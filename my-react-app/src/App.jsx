@@ -22,6 +22,42 @@ const App = () => {
 
   let [Like, setLike] = useState(0);
 
+  function Modal() {
+    return (
+      <div
+        className="modal"
+        style={{
+          marginTop: "20px",
+          padding: "20px",
+          background: "#eee",
+          textAlign: "left",
+        }}
+      >
+        <h4>제목</h4>
+        <p>날짜</p>
+        <p>상세내용</p>
+      </div>
+    );
+  }
+
+  const Modal2 = () => {
+    return (
+      <div
+        className="modal"
+        style={{
+          marginTop: "20px",
+          padding: "20px",
+          background: "#eee",
+          textAlign: "left",
+        }}
+      >
+        <h4>제목2</h4>
+        <p>날짜2</p>
+        <p>상세내용2</p>
+      </div>
+    );
+  };
+
   function Count() {
     console.log(1);
   }
@@ -42,6 +78,7 @@ const App = () => {
           <h4 style={{ color: "red", fontSize: "35px" }}>스타일 속성</h4>
         </div>
       </div>
+
       <div className="list card">
         <div>
           <button
@@ -110,6 +147,14 @@ const App = () => {
             <p>2월 19일 발행</p>
           </div>
         </div>
+      </div>
+
+      <div>
+        <Modal />
+      </div>
+
+      <div>
+        <Modal2 />
       </div>
     </>
   );
