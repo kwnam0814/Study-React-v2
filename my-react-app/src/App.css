@@ -1,11 +1,6 @@
-.App {
-    text-align: center;
-}
-
 .black-nav {
     display: flex;
     background: black;
     width: 100%;
-    color: white;
-    padding-left: 20px;
+    color: white
 }
