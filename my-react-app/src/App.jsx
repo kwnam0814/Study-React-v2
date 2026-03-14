@@ -22,8 +22,6 @@ const App = () => {
 
   let [Like, setLike] = useState(0);
 
-  const [Gender, setGender] = useState("남자");
-
   function Count() {
     console.log(1);
   }
@@ -46,50 +44,71 @@ const App = () => {
       </div>
       <div className="list card">
         <div>
-          <h2>
-            {Title[0]}{" "}
-            <span
-              onClick={() => {
-                setLike(Like + 1);
-              }}
-            >
-              👍
-            </span>{" "}
-            {Like}
-          </h2>
-          <p>2월 17일 발행</p>
+          <button
+            className="button"
+            onClick={() => {
+              let copyTitle = [...Title];
+              copyTitle.sort();
+              setTitle(copyTitle);
+            }}
+          >
+            제목 가나다순 정렬
+          </button>
         </div>
-
-        <hr />
-
         <div>
-          <h2>{Title[1]}</h2>
-          <p>2월 18일 발행</p>
-        </div>
+          <div>
+            <h2>
+              {Title[0]}{" "}
+              <span
+                onClick={() => {
+                  setLike(Like + 1);
+                }}
+              >
+                👍
+              </span>{" "}
+              {Like}
+            </h2>
+            <p>2월 17일 발행</p>
+          </div>
 
-        <hr />
+          <hr />
 
-        <div>
-          <h2>{Title[2]}</h2>
-          <p>2월 19일 발행</p>
-        </div>
+          <div>
+            <h2>
+              {Title[1]}
+              <button
+                className="button"
+                onClick={() => {
+                  let copy = [...Title];
+                  copy[1] = "여자 정장 추천";
+                  setTitle(copy);
+                }}
+              >
+                성별 바꾸기
+              </button>
+            </h2>
+            <p>2월 18일 발행</p>
+          </div>
 
-        <hr />
+          <hr />
 
-        <div>
-          <h2>
-            {Gender} 정장 추천{" "}
-            <button
-              className="button"
-              onClick={() => {
-                // Gender가 "남자"면 "여자"로 바꾸고, 아니면 "남자"로 바꿔라
-                setGender(Gender === "남자" ? "여자" : "남자");
-              }}
-            >
-              성별 바꾸기
-            </button>
-          </h2>
-          <p>2월 20일 발행</p>
+          <div>
+            <h2>
+              {Title[2]}{" "}
+              {/* 기존 state가 array/object이면 독립적 카피본을 만들어서 수정해야 함! */}
+              <button
+                className="button"
+                onClick={() => {
+                  let copyTitle = [...Title];
+                  copyTitle[2] = "자바 독학";
+                  setTitle(copyTitle);
+                }}
+              >
+                언어 변경
+              </button>
+            </h2>
+            <p>2월 19일 발행</p>
+          </div>
         </div>
       </div>
     </>
