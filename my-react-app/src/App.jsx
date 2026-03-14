@@ -22,7 +22,11 @@ const App = () => {
 
   let [Like, setLike] = useState(0);
 
-  function Modal() {
+  const [modal1, setModal1] = useState(false); // 형식은 자유
+
+  const [modal2, setModal2] = useState(true); // 형식은 자유
+
+  function Modal1() {
     return (
       <div
         className="modal"
@@ -116,6 +120,9 @@ const App = () => {
               <button
                 className="button"
                 onClick={() => {
+                  {
+                    /* 기존 state가 array/object이면 독립적 카피본을 만들어서 수정해야 함! */
+                  }
                   let copy = [...Title];
                   copy[1] = "여자 정장 추천";
                   setTitle(copy);
@@ -130,32 +137,25 @@ const App = () => {
           <hr />
 
           <div>
-            <h2>
+            <h2
+              onClick={() => {
+                setModal1(!modal1);
+              }}
+            >
               {Title[2]}{" "}
-              {/* 기존 state가 array/object이면 독립적 카피본을 만들어서 수정해야 함! */}
-              <button
-                className="button"
-                onClick={() => {
-                  let copyTitle = [...Title];
-                  copyTitle[2] = "자바 독학";
-                  setTitle(copyTitle);
-                }}
-              >
-                언어 변경
-              </button>
             </h2>
             <p>2월 19일 발행</p>
           </div>
         </div>
       </div>
 
-      <div>
-        <Modal />
-      </div>
+      {/* [동적인 UI 만드는 step]
+      1. html, css로 미리 디자인 완성
+      2. UI의 현재 상태를 state로 저장
+      3. state에 따라 UI가 어떻게 보일지 작성 */}
+      <div>{modal1 === true ? <Modal1 /> : null}</div>
 
-      <div>
-        <Modal2 />
-      </div>
+      <div>{modal2 === true ? <Modal2 /> : null}</div>
     </>
   );
 };
