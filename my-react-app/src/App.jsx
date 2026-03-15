@@ -35,7 +35,7 @@ const App = () => {
     );
   }
 
-  const Modal2 = () => {
+  const Modal2 = (props) => {
     return (
       <div
         className="modal"
@@ -46,9 +46,19 @@ const App = () => {
           textAlign: "left",
         }}
       >
-        <h4>제목2</h4>
+        <h4>{props.Title[0]}</h4>
         <p>날짜2</p>
         <p>상세내용2</p>
+        <button
+          className="button"
+          onClick={() => {
+            let copy = [...props.Title];
+            copy[0] = "여자 정장 추천";
+            props.setTitle(copy);
+          }}
+        >
+          글 수정
+        </button>
       </div>
     );
   };
@@ -156,7 +166,9 @@ const App = () => {
       </div>
 
       <div>{modal1 === true ? <Modal1 /> : null}</div>
-      <div>{modal2 === true ? <Modal2 /> : null}</div>
+      <div>
+        {modal2 === true ? <Modal2 Title={Title} setTitle={setTitle} /> : null}
+      </div>
 
       <div className="card">
         {[1, 2, 3].map(function () {
