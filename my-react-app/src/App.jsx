@@ -11,20 +11,11 @@ const App = () => {
     "파이썬 독학",
   ]);
 
-  // 자주 변경될 것 같은 html 부분은 state로 만들어놓기
-  // Title 자리 : "리액트 공부하기" 같은 자료가 들어있음
-  // setTitle 자리 : state 변경을 도와주는 함수가 들어있음
+  let [Like, setLike] = useState([0, 0, 0]);
 
-  // 이런 식으로도 가능함
-  // const [Title1, setTitle1] = useState("리액트 공부하기");
-  // const [Title2, setTitle2] = useState("남자 정장 추천");
-  // const [Title3, setTitle3] = useState("여자 정장 추천");
+  const [modal1, setModal1] = useState(false);
 
-  let [Like, setLike] = useState(0);
-
-  const [modal1, setModal1] = useState(false); // 형식은 자유
-
-  const [modal2, setModal2] = useState(true); // 형식은 자유
+  const [modal2, setModal2] = useState(true);
 
   function Modal1() {
     return (
@@ -69,20 +60,16 @@ const App = () => {
   return (
     <>
       <div className="card">
-        {/* class가 아니라 className */}
         <div className="black-nav">
           <h2 id={post}>블로그 제목!</h2>
         </div>
         <div>
-          {/* 변수 넣을 때(데이터바인딩)는 {중괄호} */}
           <h3>{post}</h3>
         </div>
         <div>
-          {/* style 넣을 때는 style={{스타일명: "값"}} */}
           <h4 style={{ color: "red", fontSize: "35px" }}>스타일 속성</h4>
         </div>
       </div>
-
       <div className="list card">
         <div>
           <button
@@ -102,12 +89,14 @@ const App = () => {
               {Title[0]}{" "}
               <span
                 onClick={() => {
-                  setLike(Like + 1);
+                  let copy = [...Like];
+                  copy[0] = copy[0] + 1;
+                  setLike(copy);
                 }}
               >
                 👍
               </span>{" "}
-              {Like}
+              {Like[0]}
             </h2>
             <p>2월 17일 발행</p>
           </div>
@@ -120,16 +109,23 @@ const App = () => {
               <button
                 className="button"
                 onClick={() => {
-                  {
-                    /* 기존 state가 array/object이면 독립적 카피본을 만들어서 수정해야 함! */
-                  }
                   let copy = [...Title];
                   copy[1] = "여자 정장 추천";
                   setTitle(copy);
                 }}
               >
                 성별 바꾸기
-              </button>
+              </button>{" "}
+              <span
+                onClick={() => {
+                  let copy = [...Like];
+                  copy[1] = copy[1] + 1;
+                  setLike(copy);
+                }}
+              >
+                👍
+              </span>{" "}
+              {Like[1]}
             </h2>
             <p>2월 18일 발행</p>
           </div>
@@ -142,20 +138,80 @@ const App = () => {
                 setModal1(!modal1);
               }}
             >
-              {Title[2]}{" "}
-            </h2>
+              {Title[2]}
+            </h2>{" "}
+            <span
+              onClick={() => {
+                let copy = [...Like];
+                copy[2] = copy[2] + 1;
+                setLike(copy);
+              }}
+            >
+              👍
+            </span>{" "}
+            {Like[2]}
             <p>2월 19일 발행</p>
           </div>
         </div>
       </div>
 
-      {/* [동적인 UI 만드는 step]
-      1. html, css로 미리 디자인 완성
-      2. UI의 현재 상태를 state로 저장
-      3. state에 따라 UI가 어떻게 보일지 작성 */}
       <div>{modal1 === true ? <Modal1 /> : null}</div>
-
       <div>{modal2 === true ? <Modal2 /> : null}</div>
+
+      <div className="card">
+        {[1, 2, 3].map(function () {
+          return 1;
+        })}
+      </div>
+      <div className="card">
+        {[1, 2, 3].map(function (a) {
+          return a;
+        })}
+      </div>
+      <div className="card">
+        {[1, 2, 3].map(function (b) {
+          return "테스트";
+        })}
+      </div>
+
+      <div className="card">
+        {[1, 2, 3, 4, 5].map(function () {
+          return <div>map 반복문입니다!</div>;
+        })}
+      </div>
+
+      <div>
+        {[1, 2, 3].map(function () {
+          return (
+            <div className="list card">
+              <h3>html 반복생성</h3>
+              <p>2월 20일 발행</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div>
+        {Title.map(function (c, i) {
+          return (
+            <div className="card" key={i}>
+              <h3>{c}</h3>
+              <p>2월 21일 발행</p>
+            </div>
+          );
+        })}
+      </div>
+
+      <div>
+        {Title.map(function (d, i) {
+          return (
+            <div className="card" key={i}>
+              <h3>{Title[i]}</h3>
+              <p>2월 21일 발행</p>
+            </div>
+          );
+        })}
+      </div>
     </>
   );
 };
