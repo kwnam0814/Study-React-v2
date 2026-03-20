@@ -165,6 +165,12 @@ const App = () => {
         </div>
       </div>
 
+      <div className="card">
+        <button onClick={() => {}}>0번글</button>
+        <button onClick={() => {}}>1번글</button>
+        <button onClick={() => {}}>2번글</button>
+      </div>
+
       <div>{modal1 === true ? <Modal1 /> : null}</div>
       <div>
         {modal2 === true ? <Modal2 Title={Title} setTitle={setTitle} /> : null}
