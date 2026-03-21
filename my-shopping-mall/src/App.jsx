@@ -1,11 +1,15 @@
 import "./App.css";
 import { useEffect, useState } from "react";
-import { Button, Container, Nav, Navbar } from "react-bootstrap";
+import { Button, Container, Nav, Navbar, Row, Col } from "react-bootstrap";
+import ShoesData from "./data";
+// import { 변수명1, 변수명2 } from "./data"; // 단, {} 안에는 export 했던 변수명 그대로 사용해야 함!
 
 function App() {
+  const [Shoes] = useState(ShoesData);
+
   return (
     <>
-      <nav>
+      <div>
         <Navbar bg="light" data-bs-theme="light">
           <Container>
             <Navbar.Brand href="#home">Navbar</Navbar.Brand>
@@ -16,8 +20,34 @@ function App() {
             </Nav>
           </Container>
         </Navbar>
-      </nav>
-      <Button variant="info">Info</Button>
+      </div>
+      <div className="bg-[url(./img/bg-1.png)] h-[300px] bg-cover bg-center"></div>
+      <Container>
+        <Row>
+          <Col>
+            <img
+              src="https://codingapple1.github.io/shop/shoes1.jpg"
+              width="80%"
+            />
+            <h4>상품명1</h4>
+            <p>상품설명1</p>
+          </Col>
+          <Col>
+            {/* html에서 public폴더 이미지 사용할 때 권장방식(Vite 사용중일 때) */}
+            <img src={import.meta.env.BASE_URL + "shoes2.jpg"} width="80%" />
+            <h4>상품명2</h4>
+            <p>상품설명2</p>
+          </Col>
+          <Col>
+            <img
+              src="https://codingapple1.github.io/shop/shoes3.jpg"
+              width="80%"
+            />
+            <h4>상품명3</h4>
+            <p>상품설명3</p>
+          </Col>
+        </Row>
+      </Container>
     </>
   );
 }
