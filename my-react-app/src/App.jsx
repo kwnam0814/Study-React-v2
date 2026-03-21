@@ -67,8 +67,28 @@ const App = () => {
     console.log(1);
   }
 
+  class Modal3 extends React.Component {
+    constructor() {
+      super();
+      this.state = {
+        name: "KIM",
+        age: 20,
+      };
+    }
+    render() {
+      return (
+        <div>
+          안녕!!! {this.state.name} & {this.state.age}
+        </div>
+      );
+    }
+  }
+
   return (
     <>
+      <div>
+        <Modal3 />
+      </div>
       <div className="card">
         <div className="black-nav">
           <h2 id={post}>블로그 제목!</h2>
@@ -166,9 +186,27 @@ const App = () => {
       </div>
 
       <div className="card">
-        <button onClick={() => {}}>0번글</button>
-        <button onClick={() => {}}>1번글</button>
-        <button onClick={() => {}}>2번글</button>
+        <button
+          onClick={() => {
+            setTitle[0];
+          }}
+        >
+          0번글
+        </button>
+        <button
+          onClick={() => {
+            setTitle[1];
+          }}
+        >
+          1번글
+        </button>
+        <button
+          onClick={() => {
+            setTitle[2];
+          }}
+        >
+          2번글
+        </button>
       </div>
 
       <div>{modal1 === true ? <Modal1 /> : null}</div>
@@ -223,12 +261,44 @@ const App = () => {
       <div>
         {Title.map(function (d, i) {
           return (
-            <div className="card" key={i}>
-              <h3>{Title[i]}</h3>
-              <p>2월 21일 발행</p>
+            <div className="card">
+              <div className="card" key={i}>
+                <h3>{Title[i]}</h3>
+                <p>2월 21일 발행</p>
+              </div>
+              <button
+                onClick={() => {
+                  let copy = [...Title];
+                  copy.splice(i, 1);
+                  setTitle(copy);
+                }}
+              >
+                삭제
+              </button>
             </div>
           );
         })}
+      </div>
+
+      <div>
+        <div>
+          <input type="text" name="" id="" />
+        </div>
+        <div>
+          <input type="range" name="" id="" />
+        </div>
+        <div>
+          <input type="datetime-local" name="" id="" />
+        </div>
+        <div>
+          <input type="number" name="" id="" />
+        </div>
+        <div>
+          <select name="" id=""></select>
+        </div>
+        <div>
+          <textarea name="" id=""></textarea>
+        </div>
       </div>
     </>
   );
