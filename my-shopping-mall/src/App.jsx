@@ -29,22 +29,22 @@ function App() {
               src="https://codingapple1.github.io/shop/shoes1.jpg"
               width="80%"
             />
-            <h4>상품명1</h4>
-            <p>상품설명1</p>
+            <h4>{Shoes[0].title}</h4>
+            <p>{Shoes[0].price}</p>
           </Col>
           <Col>
             {/* html에서 public폴더 이미지 사용할 때 권장방식(Vite 사용중일 때) */}
             <img src={import.meta.env.BASE_URL + "shoes2.jpg"} width="80%" />
-            <h4>상품명2</h4>
-            <p>상품설명2</p>
+            <h4>{Shoes[1].title}</h4>
+            <p>{Shoes[1].price}</p>
           </Col>
           <Col>
             <img
               src="https://codingapple1.github.io/shop/shoes3.jpg"
               width="80%"
             />
-            <h4>상품명3</h4>
-            <p>상품설명3</p>
+            <h4>{Shoes[2].title}</h4>
+            <p>{Shoes[2].price}</p>
           </Col>
         </Row>
       </Container>
