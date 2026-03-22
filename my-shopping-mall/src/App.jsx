@@ -62,14 +62,7 @@ function App() {
             </div>
           }
         />
-        <Route
-          path="/detail"
-          element={
-            <div>
-              <Details />
-            </div>
-          }
-        />
+        <Route path="/detail" element={<Details shoes={ShoesData} />} />
         <Route path="/about" element={<About />}>
           <Route
             path="member"
