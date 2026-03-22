@@ -2,10 +2,32 @@ import React from "react";
 import { useState } from "react";
 import ShoesData from "../data";
 import { Button, Container, Nav, Navbar, Row, Col } from "react-bootstrap";
+import styled from "styled-components";
+
+let Btn = styled.button`
+  background: ${(props) => props.bg};
+  color: ${(props) => (props.bg === "blue" ? "white" : "black")};
+  padding: 10px;
+  border: 1px solid black;
+`;
+
+let Box = styled.div`
+  background: grey;
+  padding: 20px;
+`;
 
 const Shoes = (props) => {
   return (
     <>
+      <Box>
+        <Btn bg="red">버튼</Btn>
+        <Btn bg="green">버튼</Btn>
+        <Btn bg="blue">버튼</Btn>
+        <button className="bg-yellow-400 hover:bg-yellow-500 text-white font-bold p-[10px] border border-black">
+          주문하기
+        </button>
+      </Box>
+
       <Container>
         <Row>
           <Col>
