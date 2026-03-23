@@ -1,5 +1,4 @@
-import React from "react";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 import ShoesData from "../data";
 import { Button, Container, Nav, Navbar, Row, Col } from "react-bootstrap";
 import styled from "styled-components";
@@ -17,8 +16,21 @@ let Box = styled.div`
 `;
 
 const Shoes = (props) => {
+  useEffect(() => {
+    console.log("안녕");
+  }, []);
+  const [count, setCount] = useState(0);
   return (
     <>
+      {count}
+      <button
+        className="button"
+        onClick={() => {
+          setCount(count + 1);
+        }}
+      >
+        버튼
+      </button>
       <Box>
         <Btn bg="red">버튼</Btn>
         <Btn bg="green">버튼</Btn>

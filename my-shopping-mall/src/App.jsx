@@ -18,31 +18,47 @@ import {
 
 function App() {
   let navigate = useNavigate();
+  // 1. 현재 시간을 저장할 상태(state) 생성
+  const [timer, setTimer] = useState(new Date());
+
+  useEffect(() => {
+    // 2. 1초마다 timer 상태를 업데이트하는 타이머 설정
+    const intervalId = setInterval(() => {
+      setTimer(new Date());
+    }, 1000);
+
+    // 3. 컴포넌트가 언마운트될 때 타이머 해제 (메모리 누수 방지)
+    return () => clearInterval(intervalId);
+  }, []);
+
+  // 4. 보기 좋게 포맷팅 (원하는 형식으로 변경 가능)
+  const formattedDate = timer.toLocaleDateString(); // 예: 2026. 3. 22.
+  const formattedTime = timer.toLocaleTimeString(); // 예: 오후 4:46:18
 
   return (
     <>
       <div>
-        <Navbar bg="light" data-bs-theme="light">
+        <Navbar bg="light" variant="light" expand="lg">
           <Container>
             <Navbar.Brand href="/">ShoeShop</Navbar.Brand>
-            <Nav className="me-auto">
-              <Nav.Link href="/">Home</Nav.Link>
-              <Nav.Link
-                onClick={() => {
-                  navigate("/detail");
-                }}
-              >
-                상세페이지
-              </Nav.Link>
-              <Nav.Link
-                onClick={() => {
-                  navigate("/about");
-                }}
-              >
-                About
-              </Nav.Link>
-              <Nav.Link href="#pricing">Pricing</Nav.Link>
-            </Nav>
+            <Navbar.Toggle aria-controls="basic-navbar-nav" />
+            <Navbar.Collapse id="basic-navbar-nav">
+              <Nav className="me-auto">
+                <Nav.Link onClick={() => navigate("/")}>Home</Nav.Link>
+                <Nav.Link onClick={() => navigate("/detail")}>
+                  상세페이지
+                </Nav.Link>
+                <Nav.Link onClick={() => navigate("/about")}>About</Nav.Link>
+              </Nav>
+
+              {/* --- 실시간 시간 표시 영역 시작 --- */}
+              <Nav className="ms-auto">
+                <span style={{ color: "#666", fontSize: "0.9rem" }}>
+                  📅 {formattedDate} | ⏰ {formattedTime}
+                </span>
+              </Nav>
+              {/* --- 실시간 시간 표시 영역 끝 --- */}
+            </Navbar.Collapse>
           </Container>
         </Navbar>
 
